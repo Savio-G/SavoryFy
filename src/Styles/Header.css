@@ -1,0 +1,60 @@
+.main-nav-container {
+  width: 100%;
+  height: 6rem;
+  display: grid;
+  grid-template-columns: 10rem 1.25fr 2fr 1fr 10rem;
+}
+
+.menu-link {
+  grid-column: 2/3;
+}
+
+.menu-link ul {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.Logo {
+  grid-column: 3/4;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+.Logo h1 {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+
+.Logo span {
+  font-size: 2.5rem;
+}
+
+.auth {
+  display: grid;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+@media (max-width:998px) {
+  .main-nav-container {
+    width: 100%;
+    height: 4rem;
+    grid-template-columns: 2rem 3fr 3fr 1fr 2rem;
+  }
+
+  .menu-link {
+    display: none;
+  }
+
+  .Logo {
+    grid-column: 2/3;
+    justify-content: flex-start;
+  }
+
+  .auth {
+    display: none;
+  }
+}
