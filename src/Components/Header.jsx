@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../Styles/Header.css'
 import { Link } from 'react-router-dom';
-
+import { RxHamburgerMenu } from 'react-icons/rx';
+import { AiOutlineClose } from 'react-icons/ai';
 const Header = () => {
+  const [isOpen, setisOpen] = useState(false)
   return (
     <nav className='main-nav-container'>
-      <div className="menu-link">
+      <div className={isOpen ? `mobile-menu-link` : `menu-link`}>
         <ul>
           <li>
             <Link to="/">Home</Link>
@@ -25,6 +27,13 @@ const Header = () => {
         <button className="auth-dekstop">
           Login
         </button>
+        <div className='hamburger-menu'>
+          {
+            isOpen ? <AiOutlineClose onClick={() => { setisOpen(!isOpen) }}></AiOutlineClose>
+              :
+              <RxHamburgerMenu onClick={() => { setisOpen(!isOpen) }}></RxHamburgerMenu>
+          }
+        </div>
       </div>
     </nav>
   );
