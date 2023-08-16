@@ -7,3 +7,28 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.description-text {
+  color: rgb(117, 117, 117);
+}
+
+.auth-button {
+  background-color: #D4A373;
+  width: 9rem;
+  height: 3rem;
+  border: 0;
+  border-radius: 8px;
+  font-size: 1.15rem;
+}
+
+.auth-button:hover {
+  transform: translateY(-3px);
+  transition: transform 0.3s ease-in-out;
+  box-shadow: -1px 35px 107px -3px rgba(212, 163, 115, 1);
+  -webkit-box-shadow: -1px 35px 107px -3px rgba(212, 163, 115, 1);
+  -moz-box-shadow: -1px 35px 107px -3px rgba(212, 163, 115, 1);
+}
+
+.text-gradient {
+  color: #D4A373;
+}
