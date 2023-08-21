@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import NewRecipes from './NewRecipes';
 import Chefs from './Chefs/Chefs';
@@ -6,6 +6,13 @@ import Chefs from './Chefs/Chefs';
 const Home = () => {
   const homePageInfo = useLoaderData()
   const { chef_image_home, recipes } = homePageInfo
+  const [chefs, setChefs] = useState([])
+  useEffect(() => {
+    fetch('http://localhost:5000/chefs')
+      .then(res => res.json())
+      .then(data => setChefs(data))
+  }, [])
+
   return (
     <>
       <div className='h-full w-[85vw] mx-auto lg:flex p-[1.5rem] gap-4 justify-center align-middle'>
@@ -38,8 +45,10 @@ const Home = () => {
       {/* Chefs Section */}
       <div className='h-full w-[85vw] mx-auto mt-16'>
         <h2 className='lg:text-[2rem] text-[1.5rem] font-black mb-[2rem]'>Our Chefs</h2>
-        <div>
-          <Chefs></Chefs>
+        <div className='grid lg:grid-cols-2'>
+          {
+            chefs.map(chef => <Chefs key={chef.id} chef={chef}></Chefs>)
+          }
         </div>
       </div>
 
