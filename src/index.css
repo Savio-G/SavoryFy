@@ -51,3 +51,9 @@
   background-size: var(--s) var(--s);
 
 }
+
+.chef-shadow {
+  box-shadow: 3px 3px 19px 10px rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: 3px 3px 19px 10px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 3px 3px 19px 10px rgba(0, 0, 0, 0.15);
+}
