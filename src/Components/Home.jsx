@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 import NewRecipes from './NewRecipes';
+import Chefs from './Chefs/Chefs';
 
 const Home = () => {
   const homePageInfo = useLoaderData()
@@ -26,7 +27,7 @@ const Home = () => {
       </div>
       {/* New Recipes Section */}
       <div className='h-full w-[85vw] mx-auto mt-16 '>
-        <h2>Checkout our New Recipes</h2>
+        <h2 className='lg:text-[2rem] text-[1.5rem] font-black mb-[2rem]'>Checkout our New Recipes</h2>
         <div className='lg:flex gap-[3rem]'>
           {recipes.map((recipe, index) => <NewRecipes
             key={index}
@@ -34,6 +35,14 @@ const Home = () => {
           ></NewRecipes>)}
         </div>
       </div>
+      {/* Chefs Section */}
+      <div className='h-full w-[85vw] mx-auto mt-16'>
+        <h2 className='lg:text-[2rem] text-[1.5rem] font-black mb-[2rem]'>Our Chefs</h2>
+        <div>
+          <Chefs></Chefs>
+        </div>
+      </div>
+
     </>
   );
 };
