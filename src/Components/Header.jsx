@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../Styles/Header.css'
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { AiOutlineClose } from 'react-icons/ai';
 const Header = () => {
@@ -9,14 +9,23 @@ const Header = () => {
     <nav className='main-nav-container'>
       <div className={isOpen ? `mobile-menu-link` : `menu-link`}>
         <ul className='text-[1.15rem]'>
-          <li>
-            <Link to="/">Home</Link>
+          <li className='navigation'>
+            <NavLink
+              to="/"
+              className={({ isActive }) => (isActive ? 'text-[#D4A373]' : 'text-black')}
+            >Home</NavLink>
           </li>
-          <li>
-            <Link to="/About">About</Link>
+          <li className='navigation'>
+            <NavLink
+              to="/About"
+              className={({ isActive }) => (isActive ? 'text-[#D4A373]' : 'text-black')}
+            >About Us</NavLink>
           </li>
-          <li>
-            <Link to="/Blog">Blog</Link>
+          <li className='navigation'>
+            <NavLink
+              to="/Blog"
+              className={({ isActive }) => (isActive ? 'text-[#D4A373]' : 'text-black')}
+            >Blog</NavLink>
           </li>
         </ul>
       </div>

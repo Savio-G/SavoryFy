@@ -12,6 +12,25 @@
   color: rgb(117, 117, 117);
 }
 
+/* navigation effects */
+.navigation {
+  font-weight: 600;
+}
+
+.navigation::after {
+  content: "";
+  display: block;
+  height: 4px;
+  width: 100%;
+  background-color: #D4A373;
+  transform: scale(0);
+  transition: transform 0.2s ease;
+}
+
+.navigation:hover::after {
+  transform: scale(1);
+}
+
 .auth-button {
   background-color: #D4A373;
   width: 9rem;
@@ -53,7 +72,7 @@
 }
 
 .chef-shadow {
-  box-shadow: 3px 3px 19px 10px rgba(0, 0, 0, 0.15);
-  -webkit-box-shadow: 3px 3px 19px 10px rgba(0, 0, 0, 0.15);
-  -moz-box-shadow: 3px 3px 19px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: 10px 10px 21px -1px rgba(212, 163, 115, 0.47);
+  -webkit-box-shadow: 10px 10px 21px -1px rgba(212, 163, 115, 0.47);
+  -moz-box-shadow: 10px 10px 21px -1px rgba(212, 163, 115, 0.47);
 }

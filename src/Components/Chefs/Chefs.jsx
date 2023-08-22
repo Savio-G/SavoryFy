@@ -1,5 +1,6 @@
 import React from 'react';
 import { BiLike } from 'react-icons/bi';
+import { Link } from 'react-router-dom';
 const Chefs = ({ chef }) => {
   const { id, name, years_of_experience, image, noOfRecipes } = chef
   return (
@@ -9,7 +10,7 @@ const Chefs = ({ chef }) => {
         <img className='h-[100px] md:h-[200px] lg:h-[200px]' src="https://i.ibb.co/ZdN1gfG/dinner.png" alt="" />
 
       </div>
-      <div className='w-[100%] md:w-[60%] lg:w-[60%] h-[60%] md:h-[100%] lg:h-[100%] bg-[#D4A373] p-[1rem] flex flex-col justify-between '>
+      <div className='w-[100%] md:w-[60%] lg:w-[60%] h-[60%] md:h-[100%] lg:h-[100%] bg-[#F1F0E8] p-[1rem] flex flex-col justify-between '>
         <div>
           <div className='flex justify-center'>
             <img className='h-[100px] md:h-[150px] lg:h-[150px]' src={image} alt="" />
@@ -30,7 +31,9 @@ const Chefs = ({ chef }) => {
           </div>
         </div>
         <div>
-          <button className='block w-[100%] bg-[#F1F0E8] text-[#D4A373] p-[0.25rem] rounded-[8px] md:p-[0.65rem] md:rounded-[10px]  lg:p-[0.65rem] lg:rounded-[10px]'>View Recipes</button>
+          <Link to={`/ChefDetail/${id}`}>
+            <button className='block w-[100%] bg-[#D4A373] text-black p-[0.25rem] rounded-[8px] md:p-[0.65rem] md:rounded-[10px]  lg:p-[0.65rem] lg:rounded-[10px]'>View Recipes</button>
+          </Link>
         </div>
       </div>
     </div>
