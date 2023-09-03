@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import NewRecipes from './NewRecipes';
 import Chefs from './Chefs/Chefs';
 
@@ -26,7 +26,9 @@ const Home = () => {
             – Welcome to SavoryFy!
 
           </p>
-          <button className='auth-button mt-[2rem]'>Login</button>
+          <Link to="/Login">
+            <button className='auth-button mt-[2rem]'>Login</button>
+          </Link>
         </div>
         <div className='w-[100%]'>
           <img className='lg:h-[85vh] md:h-[85vh] mx-auto' src={chef_image_home} alt="homePageImage" />

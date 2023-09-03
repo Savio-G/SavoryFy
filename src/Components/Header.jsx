@@ -33,9 +33,11 @@ const Header = () => {
         <h1><span>S</span>avoryfy</h1>
       </div>
       <div className='auth'>
-        <button className="auth-button auth-dekstop ">
-          Login
-        </button>
+        <Link to="/Login">
+          <button className="auth-button auth-dekstop ">
+            Login
+          </button>
+        </Link>
         <div className='hamburger-menu'>
           {
             isOpen ? <AiOutlineClose onClick={() => { setisOpen(!isOpen) }}></AiOutlineClose>
