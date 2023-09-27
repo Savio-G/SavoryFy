@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import '../Styles/Header.css'
 import { Link, NavLink } from 'react-router-dom';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { AiOutlineClose } from 'react-icons/ai';
+import { AuthContext } from '../Authentication/AuthProvider';
 const Header = () => {
   const [isOpen, setisOpen] = useState(false)
+  const { user, handleLogout } = useContext(AuthContext)
   return (
     <nav className='main-nav-container'>
       <div className={isOpen ? `mobile-menu-link` : `menu-link`}>
@@ -33,11 +35,17 @@ const Header = () => {
         <h1><span>S</span>avoryfy</h1>
       </div>
       <div className='auth'>
-        <Link to="/Login">
-          <button className="auth-button auth-dekstop ">
-            Login
+        {user ?
+          <button onClick={handleLogout} className="auth-button auth-dekstop ">
+            Logout
           </button>
-        </Link>
+          :
+          <Link to="/Login">
+            <button className="auth-button auth-dekstop ">
+              Login
+            </button>
+          </Link>
+        }
         <div className='hamburger-menu'>
           {
             isOpen ? <AiOutlineClose onClick={() => { setisOpen(!isOpen) }}></AiOutlineClose>

@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import '../Styles/Login.css'
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../Authentication/AuthProvider';
 
 const Register = () => {
+  const { user, createUser } = useContext(AuthContext)
+
+  const [error, setError] = useState("")
   const handleRegister = (e) => {
     e.preventDefault()
     const form = e.target
@@ -10,7 +14,19 @@ const Register = () => {
     const userName = form.username.value
     const photoUrl = form.photoUrl.value
     const password = form.password.value
-    console.log(email, userName, photoUrl, password)
+    if (password.length < 8) {
+      setError("Please give the password 8 characters")
+      return
+    }
+    createUser(email, password)
+      .then((result) => {
+        const signedUpUser = result.user
+        setError("")
+        form.reset()
+      })
+      .catch((error) => {
+        setError(error.message)
+      })
   }
   return (
     <div className='h-screen lg:h-[calc(100vh-100px)] grid place-content-center'>
@@ -37,7 +53,7 @@ const Register = () => {
             <input type="password" name='password' required="required" />
             <span>Password</span>
           </div>
-
+          <p className='text-red-600 text-start'>{error}</p>
           <input type="submit" className='enter' value="Sign Up" />
 
           <p className='mb-[20px]'>Already have an account? <Link to="/Login"><span className='text-[#D4A373]'>
