@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import '../Styles/Login.css'
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../Authentication/AuthProvider';
+import { updateProfile } from 'firebase/auth';
 
 const Register = () => {
   const { user, createUser } = useContext(AuthContext)
@@ -23,10 +24,21 @@ const Register = () => {
         const signedUpUser = result.user
         setError("")
         form.reset()
+        updateUserData(signedUpUser, userName, photoUrl)
       })
       .catch((error) => {
         setError(error.message)
       })
+  }
+  // This function is for adding username and photourl while registering and this is not coming from the authprovider page. Might update it later but for now its fine
+  const updateUserData = (user, userName, photoUrl) => {
+    updateProfile(user, {
+      displayName: userName, photoURL: photoUrl
+    }).then(() => {
+      console.log('sucessfully updated')
+    }).catch((error) => {
+      console.log(error)
+    })
   }
   return (
     <div className='h-screen lg:h-[calc(100vh-100px)] grid place-content-center'>

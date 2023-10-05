@@ -1,17 +1,21 @@
 import React, { useContext, useState } from 'react';
 import '../Styles/Login.css'
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Authentication/AuthProvider';
 
 const Login = () => {
   const { user, existingUser, handleGoogleLogin, handleGithubLogin } = useContext(AuthContext)
-
   const [error, setError] = useState("")
+
+  const location = useLocation()
+  const navigate = useNavigate()
+  const from = location.state?.from?.pathname || '/'
+  console.log(location)
   const handleGoogleLoginAuth = () => {
     handleGoogleLogin()
       .then((result) => {
         const user = result.user
-        console.log(user)
+        navigate(from, { replace: true })
       })
       .catch((error) => {
         console.log(error)
@@ -22,7 +26,7 @@ const Login = () => {
     handleGithubLogin()
       .then((result) => {
         const user = result.user
-        console.log(user)
+        navigate(from, { replace: true })
       })
       .catch((error) => {
         console.log(error)
@@ -39,6 +43,7 @@ const Login = () => {
         const existingUser = result.user
         setError("")
         form.reset()
+        navigate(from, { replace: true })
       })
       .catch((error) => {
         setError(error.message)

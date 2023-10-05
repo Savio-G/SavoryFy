@@ -8,11 +8,14 @@ import Blog from "../Components/Blog";
 import ChefDetail from "../Components/Chefs/ChefDetail";
 import Login from "../Components/Login";
 import Register from "../Components/Register";
+import PrivateRoute from "../Components/PrivateRoute";
+import ErrorPage from "../Components/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
@@ -29,7 +32,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/ChefDetail/:id",
-        element: <ChefDetail></ChefDetail>,
+        element: <PrivateRoute><ChefDetail></ChefDetail></PrivateRoute>,
         loader: ({ params }) => fetch(`http://localhost:5000/chefs/${params.id}`)
       },
       {

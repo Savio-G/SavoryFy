@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, GoogleAuthProvider, GithubAuthProvider, signInWithPopup, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, GoogleAuthProvider, GithubAuthProvider, signInWithPopup, signOut, updateCurrentUser } from "firebase/auth";
 import { app } from '../Firebase/firebase.config';
 
 const auth = getAuth(app)
@@ -10,6 +10,8 @@ const githubProvider = new GithubAuthProvider()
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
+  // handles loading on auth pages and stuff
+  const [loading, setLoading] = useState(true)
   // Handles signup or creates a new user
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password)
@@ -34,14 +36,14 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, currentUser => {
-      console.log('auth state changed', currentUser)
       setUser(currentUser)
+      setLoading(false)
     });
     return () => {
       unsubscribe()
     }
   }, [])
-  const authInfo = { user, createUser, existingUser, handleGoogleLogin, handleGithubLogin, handleLogout }
+  const authInfo = { user, loading, createUser, existingUser, handleGoogleLogin, handleGithubLogin, handleLogout }
   return (
     <AuthContext.Provider value={authInfo}>
       {children}

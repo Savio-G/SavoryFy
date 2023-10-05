@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import NewRecipes from './NewRecipes';
 import Chefs from './Chefs/Chefs';
+import { AuthContext } from '../Authentication/AuthProvider';
 
 const Home = () => {
   const homePageInfo = useLoaderData()
@@ -12,7 +13,7 @@ const Home = () => {
       .then(res => res.json())
       .then(data => setChefs(data))
   }, [])
-
+  const { user } = useContext(AuthContext)
   return (
     <>
       <div className='h-full w-[85vw] mx-auto lg:flex p-[1.5rem] gap-4 justify-center align-middle'>
@@ -26,9 +27,14 @@ const Home = () => {
             – Welcome to SavoryFy!
 
           </p>
-          <Link to="/Login">
+          {!user && <Link to="/Login">
             <button className='auth-button mt-[2rem]'>Login</button>
-          </Link>
+          </Link>}
+
+
+          {/* <Link to="/Login">
+            <button className='auth-button mt-[2rem]'>Login</button>
+          </Link> */}
         </div>
         <div className='w-[100%]'>
           <img className='lg:h-[85vh] md:h-[85vh] mx-auto' src={chef_image_home} alt="homePageImage" />

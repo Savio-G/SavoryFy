@@ -7,6 +7,7 @@ import { AuthContext } from '../Authentication/AuthProvider';
 const Header = () => {
   const [isOpen, setisOpen] = useState(false)
   const { user, handleLogout } = useContext(AuthContext)
+
   return (
     <nav className='main-nav-container'>
       <div className={isOpen ? `mobile-menu-link` : `menu-link`}>
